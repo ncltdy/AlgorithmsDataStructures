@@ -26,10 +26,10 @@ def fibo_rec(n):
         return n
     return fibo_rec(n - 1) + fibo_rec(n - 2)
 
+
 def is_palindrome_rec(text):
-    pass
+    if len(text) <= 1:
+        return True
+    return (text[0] == text[-1]) and is_palindrome_rec(text[1:-1])
 
 
-def is_palindrome(text):
-    text = text.replace(" ", "").lower()
-    return text == text[::-1]
