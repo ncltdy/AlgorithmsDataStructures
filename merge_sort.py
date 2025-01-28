@@ -1,17 +1,3 @@
-def mergeSort(arr):
-    if len(arr) <= 1:
-        return arr
-
-    mid = len(arr) // 2
-    leftHalf = arr[:mid]
-    rightHalf = arr[mid:]
-
-    sortedLeft = mergeSort(leftHalf)
-    sortedRight = mergeSort(rightHalf)
-
-    return merge(sortedLeft, sortedRight)
-
-
 def merge(left, right):
     result = []
     i = j = 0
@@ -28,6 +14,21 @@ def merge(left, right):
     result.extend(right[j:])
 
     return result
+
+
+def mergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    leftHalf = arr[:mid]
+    rightHalf = arr[mid:]
+
+    sortedLeft = mergeSort(leftHalf)
+    sortedRight = mergeSort(rightHalf)
+
+    return merge(sortedLeft, sortedRight)
+
 
 unsortedArr = [3, 7, 6, -10, 15, 23.5, 55, -13]
 sortedArr = mergeSort(unsortedArr)
