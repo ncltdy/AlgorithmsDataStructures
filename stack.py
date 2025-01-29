@@ -42,7 +42,25 @@ print(my_stack)
 
 
 def are_parenthesis_valid(string: str) -> bool:
-    pass
+    stack = []
+    matching = {
+        "(": ")",
+        "[": "]",
+        "{": "}"
+    }
+
+    for char in string:
+        if char in matching.keys():
+            stack.append(char)
+        elif char in matching.values():
+            if not stack or matching[stack[-1]] != char:
+                # pokud je zasobnik prazdny, nasli jsme uzaviraci zavorku bez odpovidajici oteviraci zavorky = False
+                # nebo pokud se vrchol zasobniku nerovna aktualni zavorce = False
+                return False
+            else:
+                stack.pop()
+
+    return len(stack) == 0
 
 input = "())" #False
 input0 = "()" #True
@@ -51,3 +69,5 @@ input2 = "({({}[])[})" #False
 input3 = "(8*5{8({3+8}-[5-8])+[9*0]})" #True
 input4 = "(8*5{8({3+8-[5-8])+[9*0]})" #False
 input5 = "(8*5{8(3+8}-[5-8])+[9*0]})" #False
+
+print(are_parenthesis_valid(input5))
